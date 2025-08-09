@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            @foreach(var post in Model)
+            {
+                <div class="post-preview">
+                    <a asp-controller="Post" asp-action="Details" asp-route-id="@post.Id">
+                        <h2 class="post-title">@post.Baslik</h2>
+						@if (!string.IsNullOrEmpty(post.AltBaslik))
+						{
+							<h3 class="post-subtitle">@post.AltBaslik</h3>
+						})
+                     </a>
+                       <p class="port-meta">
+                        Yayınlayan
+						<a href="#">@post.Yazar</a>
+						on @post.YayımlanmaTarihi.ToString("dd MMMM yyyy")
+
+                       </p>
+					
+                </div>
+
+				<hr class="my-4" />
+         }
+            
+            <!-- Divider-->
+         
+            <!-- Pager-->
+            <div class="d-flex justify-content-end mb-4">
+                <a class="btn btn-primary text-uppercase" href="#!">Önceki postlar →</a></div>
+        </div>
+    </div>
+</div>
+
+

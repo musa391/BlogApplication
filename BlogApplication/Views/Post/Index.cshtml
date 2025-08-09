@@ -1,0 +1,61 @@
+﻿@model List<Post>
+
+@{
+    ViewData["Title"] = "Post Listesi";
+}
+
+<h1>Post Listesi</h1>
+
+<a class="btn btn-primary mb-3" href="@Url.Action("Create")">Yeni Post Oluştur</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Başlık</th>
+            <th>Alt Başlık</th>
+            <th>İçerik</th>
+            <th>Yazar</th>
+            <th>Tarih</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Baslik</td>
+                <td>@post.AltBaslik</td>
+                <td>@post.Icerik</td>
+                <td>@post.Yazar</td>
+                <td>@post.YayımlanmaTarihi.ToShortDateString()</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" href="@Url.Action("Edit", new { id = post.Id })">Düzenle</a>
+                    <a class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-@post.Id">Sil</a>
+                    <a class="btn btn-sm btn-info" href="@Url.Action("Details", new { id = post.Id })">Detay</a>
+                    <!-- Modal yapısı -->
+                    <div class="modal fade" id="deleteModal-@post.Id" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Postu Sil</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    "@post.Baslik" adlı yazıyı silmek istediğinizden emin misiniz?
+                                </div>
+                                <div class="modal-footer">
+                                    <form asp-action="Delete" asp-controller="Post" method="post">
+                                        <input type="hidden" name="id" value="@post.Id" />
+                                        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

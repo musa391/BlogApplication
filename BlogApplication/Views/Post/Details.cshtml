@@ -1,0 +1,44 @@
+﻿@model Post
+
+@{
+    ViewData["Title"] = Model.Baslik;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<header class="masthead" style="background-image: url('@Model.ResimUrl')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>@Model.Baslik</h1>
+                    <h2 class="subheading">@Model.AltBaslik</h2>
+                    <span class="Meta">
+                        Posted by <a href="#">@Model.Yazar</a> on @Model.YayımlanmaTarihi.ToString("dd MMMM yyyy")
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p>@Html.Raw(Model.Icerik)</p>
+                @if (!string.IsNullOrEmpty(Model.ResimUrl))
+                {
+                    <img class="img-fluid" src="@Model.ResimUrl" alt="Post Image" />
+                }
+                <p>
+                    Placeholder text by
+                    <a href="http://spaceipsum.com/">Space Ipsum</a>
+                    &middot; Images by
+                    <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</article>
+

@@ -1,0 +1,134 @@
+﻿@model Post
+
+@{
+	ViewData["Title"] = "Post Oluştur";
+
+}
+
+<h1>Yeni Post Oluştur</h1>
+
+<form asp-action="Create" method="post">
+	<div class="form-group">
+		<label asp-for="Baslik" class="control-label"></label>
+		<input asp-for="Baslik" class="form-control" />
+		<span asp-validation-for="Baslik" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Icerik" class="control-label"></label>
+		<textarea asp-for="Icerik" class="form-control"></textarea>
+		<span asp-validation-for="Icerik" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="YayımlanmaTarihi" class="control-label"></label>
+		<input asp-for="YayımlanmaTarihi" class="form-control" type="date" />
+		<span asp-validation-for="YayımlanmaTarihi" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="AltBaslik" class="control-label"></label>
+		<input asp-for="AltBaslik" class="form-control" />
+		<span asp-validation-for="AltBaslik" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Yazar" class="control-label"></label>
+		<input asp-for="Yazar" class="form-control" />
+		<span asp-validation-for="Yazar" class="text-danger"></span>
+		</div>
+	
+
+		
+
+		<button type="submit">Kaydet</button>
+	<a class="btn btn-secondary" asp-action="Index">Geri</a>
+</form>
+
+
+@section Scripts{
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	
+}
+
+<style>
+    form {
+        max-width: 700px;
+        margin: 50px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: 0.3s ease-in-out;
+    }
+
+        form:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        padding: 10px 12px;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #5e72e4;
+            box-shadow: 0 0 0 0.2rem rgba(94, 114, 228, 0.25);
+        }
+
+    .form-check {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .form-check-input {
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+
+    .btn {
+        padding: 10px 24px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+    }
+
+    button[type="submit"] {
+        background: linear-gradient(135deg, #5e72e4, #825ee4);
+        color: white;
+        border: none;
+        margin-right: 10px;
+        height:50px;
+        width:100px;
+    }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(135deg, #6e82f0, #9d7ef0);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(94, 114, 228, 0.4);
+        }
+
+    .btn-secondary:hover {
+        background-color: #6c757d;
+        color: white;
+        transform: scale(1.05);
+    }
+
+    .text-danger {
+        font-size: 0.9rem;
+        color: #dc3545;
+    }
+</style>

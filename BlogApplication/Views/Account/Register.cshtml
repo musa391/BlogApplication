@@ -1,0 +1,111 @@
+﻿@model Kullanici
+
+<form asp-action="Register" method="post">
+	<div>
+		<label>Ad</label>
+		<input asp-for="KullaniciAdi" />
+		<span asp-validation-for="KullaniciAdi"></span>
+	</div>
+	<div>
+		<label>Soyad</label>
+		<input asp-for="Soyad" />
+		<span asp-validation-for="Soyad"></span>
+	</div>
+	<div>
+		<label>Email</label>
+		<input asp-for="Email" />
+		<span asp-validation-for="Email"></span>
+	</div>
+	<div>
+		<label>Şifre</label>
+		<input asp-for="Sifre" />
+		<span asp-validation-for="Sifre"></span>
+	</div>
+	<div>
+		<label>Rol</label>
+		<select asp-for="Rol" class="form-control">
+			<option value="Admin">Admin</option>
+			<option value="User">User</option>
+		</select>
+		<span asp-validation-for="Rol"></span>
+	</div>
+
+	<button type="submit">Kayıt Ol</button>
+
+</form>
+
+@section Scripts{
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
+
+<style>
+	form {
+		max-width: 400px;
+		margin: 40px auto;
+		padding: 30px 25px;
+		background: #fff;
+		border-radius: 10px;
+		box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	}
+
+		form div {
+			margin-bottom: 20px;
+			display: flex;
+			flex-direction: column;
+		}
+
+		form label {
+			font-weight: 600;
+			margin-bottom: 6px;
+			color: #444;
+		}
+
+		form input[type="text"],
+		form input[type="email"],
+		form input[type="password"],
+		form select {
+			padding: 12px 14px;
+			border: 1.6px solid #ccc;
+			border-radius: 6px;
+			font-size: 15px;
+			transition: border-color 0.3s ease;
+		}
+
+			form input[type="text"]:focus,
+			form input[type="email"]:focus,
+			form input[type="password"]:focus,
+			form select:focus {
+				border-color: #007bff;
+				outline: none;
+			}
+
+	span[asp-validation-for] {
+		color: #d93025; /* hata mesajları için kırmızı */
+		font-size: 13px;
+		margin-top: 4px;
+	}
+
+	form button[type="submit"] {
+		width: 100%;
+		padding: 14px 0;
+		background-color: #007bff;
+		border: none;
+		border-radius: 7px;
+		font-size: 18px;
+		color: white;
+		font-weight: 600;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+	form button[type="submit"]:hover {
+			background-color: #0056b3;
+		}
+
+	
+		
+	
+</style>
